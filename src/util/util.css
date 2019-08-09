@@ -1,0 +1,72 @@
+.util-table {
+  width: 100%;
+  height: 100%;
+}
+.header-util {
+  /*border: 1px red solid;*/
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 5px;
+  padding: 5px;
+
+}
+.header-util-input-div {
+  flex: 1;
+  display: flex;
+  /*flex-wrap: wrap;*/
+}
+.header-util-input{
+  flex: 3;
+}
+.header-util-select{
+  flex: 1;
+  padding-top: 1px;
+  margin-right: 5px;
+}
+.header-util-button-div{
+  flex: 1;
+  display: flex;
+  /*主轴上的对齐方式*/
+  justify-content: flex-end;
+  align-items: center;
+
+}
+.header-util-button{
+  font-size: 15px;
+
+}
+.page-div {
+  margin-top: 5px;
+  margin-right: 5px;
+  margin-bottom: 3px;
+  overflow: hidden
+}
+.my-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.my-content-item {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.my-content-item:last-child {
+  margin-bottom: 5px;
+}
+
+.my-content-item-label {
+  flex: 1;
+  text-align: right;
+  margin-right: 5px;
+}
+
+.my-content-item-input {
+  flex: 3;
+}
