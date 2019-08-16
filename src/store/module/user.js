@@ -1,5 +1,5 @@
 import { login, logout, getAccess } from '@/api/user'
-import { setToken, getToken, setYhxtm, getYhxtm, localSave  } from '@/libs/util'
+import { setToken, getToken, setYhxtm, getYhxtm, localSave } from '@/libs/util'
 import { initRouter } from '@/libs/router-util'
 export default {
   state: {
@@ -38,7 +38,7 @@ export default {
   },
   actions: {
     // 登录
-    handleLogin ({ commit }, {userName, password}) {
+    handleLogin ({ commit }, { userName, password }) {
       userName = userName.trim()
       return new Promise((resolve, reject) => {
         login({
@@ -46,27 +46,26 @@ export default {
           password
         }).then(res => {
           const data = res
-          if(data.code === '200' && data.token){
+          if (data.code === '200' && data.token) {
             commit('setToken', data.token)
             commit('setYhxtm', data.yhxtm)
-            console.log(data.user);
-            localSave('userInfo' ,  JSON.stringify(data.user));
-            console.log(JSON.parse(localStorage.getItem('userInfo')).userName);
+            console.log(data.user)
+            localSave('userInfo', JSON.stringify(data.user))
+            console.log(JSON.parse(localStorage.getItem('userInfo')).userName)
             initRouter()
             resolve()
-          }else{
+          } else {
             alert(data.msg)
-            reject(new Error("msg错误"))
+            reject(new Error('msg错误'))
           }
-
         }).catch(err => {
-          console.log('err: ',err)
+          console.log('err: ', err)
           reject(err)
         })
       })
     },
     // 退出登录
-    handleLogOut ({commit}) {
+    handleLogOut ({ commit }) {
       return new Promise((resolve, reject) => {
         // logout(state.token).then(() => {
         //   commit('setToken', '')
@@ -78,7 +77,7 @@ export default {
         // 如果你的退出登录无需请求接口，则可以直接使用下面三行代码而无需使用logout调用接口
         commit('setToken', '')
         commit('setAccess', [])
-        commit('setYhxtm','');
+        commit('setYhxtm', '')
         commit('setHasGetInfo', false)
         localSave('dynamicRouter', [])
         localSave('userInfo', null)

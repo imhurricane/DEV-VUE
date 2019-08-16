@@ -7,22 +7,22 @@
 </template>
 
 <script>
-  import UserInfoLeft from "./UserInfoLeft";
-  import UserInfoRight from "./UserInfoRight";
-  export default {
-    name: "UserInfo",
-    components: {UserInfoRight, UserInfoLeft},
-    data() {
-      return {
-        split1: 0.5
-      }
-    },
-    methods: {
-      getMyUserInfoLeft (xtm){
-        this.$refs.myUserInfoLeft.getDeptList(xtm);
-      }
+import UserInfoLeft from './UserInfoLeft'
+import UserInfoRight from './UserInfoRight'
+export default {
+  name: 'UserInfo',
+  components: { UserInfoRight, UserInfoLeft },
+  data () {
+    return {
+      split1: 0.5
+    }
+  },
+  methods: {
+    getMyUserInfoLeft (xtm) {
+      this.$refs.myUserInfoLeft.getDeptList(xtm)
     }
   }
+}
 </script>
 
 <style scoped>

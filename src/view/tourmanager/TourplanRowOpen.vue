@@ -32,12 +32,12 @@
         </div>
     </template>
 <script>
-    export default {
-        name: "TourplanRowOpen",
-        props: {
-            row: Object
-        }
-    }
+export default {
+  name: 'TourplanRowOpen',
+  props: {
+    row: Object
+  }
+}
 </script>
 
 <style scoped>

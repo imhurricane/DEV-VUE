@@ -40,103 +40,103 @@
 </template>
 
 <script>
-    export default {
-        name: "MyModal",
-        data () {
-          return {
-              isFullscreen : false,
-              magnifyIcon: true,
-          }
-        },
-        props : {
-            isShowModal: {
-                type: [Boolean , String] ,
-                default () {
-                    return false
-                }
-            },
-            //确认按钮加载
-            modalLoading : {
-                type: [Boolean , String] ,
-                default () {
-                    return false
-                }
-            },
-            modalWidth : {
-                type:  [Number , String],
-                default () {
-                    return window.innerWidth- 360
-                }
-            },
-            okText : {
-                type:  String,
-                default () {
-                    return '确定'
-                }
-            },
-            cancelText : {
-                type:  String,
-                default () {
-                    return '取消'
-                }
-            },
-            modalTitle : {
-                type:  String,
-                default () {
-                    return '欢迎使用定制modal'
-                }
-            }
-        },
-        mounted() {
-            let myModal = document.getElementsByClassName("ivu-modal-content");
-            for (let i = 0; i < myModal.length; i++) {
-                myModal[i].style.minWidth = window.innerWidth/2.5 + 'px'
-            }
-        },
-        methods :{
-            modelLargen () {
-                this.isFullscreen = !this.isFullscreen
-                this.magnifyIcon = !this.magnifyIcon
-                this.$emit('on-largen' , this.isFullscreen);
-            },
-            ok () {
-                this.$emit('on-ok' , null);
-                this.isFullscreen = false
-                this.magnifyIcon = true
-                this.$emit('on-largen' , this.isFullscreen);
-            },
-            cancel () {
-                this.$emit('on-cancel' , null);
-                this.isFullscreen = false
-                this.magnifyIcon = true
-                this.$emit('on-largen' , this.isFullscreen);
-            }
-        },
-        watch : {
-            isShowModal (val) {
-                if (val){
-                    let tabListItem = document.getElementsByClassName('tab-list-item');
-                    console.log(tabListItem.length);
-                    for (let i = 0; i < tabListItem.length; i++) {
-                        tabListItem[i].style.maxHeight = window.innerHeight - 350 + 'px'
-                        tabListItem[i].style.minHeight = window.innerHeight - 350 + 'px'
-                    }
-                }
-            },
-            isFullscreen (val) {
-                let tabListItem = document.getElementsByClassName('tab-list-item');
-                if (val) {
-                    for (let i = 0; i < tabListItem.length; i++) {
-                        tabListItem[i].style.maxHeight = window.innerHeight - 200 + 'px'
-                    }
-                } else {
-                    for (let i = 0; i < tabListItem.length; i++) {
-                        tabListItem[i].style.maxHeight = window.innerHeight - 350 + 'px'
-                    }
-                }
-            }
-        }
+export default {
+  name: 'MyModal',
+  data () {
+    return {
+      isFullscreen: false,
+      magnifyIcon: true
     }
+  },
+  props: {
+    isShowModal: {
+      type: [Boolean, String],
+      default () {
+        return false
+      }
+    },
+    // 确认按钮加载
+    modalLoading: {
+      type: [Boolean, String],
+      default () {
+        return false
+      }
+    },
+    modalWidth: {
+      type: [Number, String],
+      default () {
+        return window.innerWidth - 360
+      }
+    },
+    okText: {
+      type: String,
+      default () {
+        return '确定'
+      }
+    },
+    cancelText: {
+      type: String,
+      default () {
+        return '取消'
+      }
+    },
+    modalTitle: {
+      type: String,
+      default () {
+        return '欢迎使用定制modal'
+      }
+    }
+  },
+  mounted () {
+    let myModal = document.getElementsByClassName('ivu-modal-content')
+    for (let i = 0; i < myModal.length; i++) {
+      myModal[i].style.minWidth = window.innerWidth / 2.5 + 'px'
+    }
+  },
+  methods: {
+    modelLargen () {
+      this.isFullscreen = !this.isFullscreen
+      this.magnifyIcon = !this.magnifyIcon
+      this.$emit('on-largen', this.isFullscreen)
+    },
+    ok () {
+      this.$emit('on-ok', null)
+      this.isFullscreen = false
+      this.magnifyIcon = true
+      this.$emit('on-largen', this.isFullscreen)
+    },
+    cancel () {
+      this.$emit('on-cancel', null)
+      this.isFullscreen = false
+      this.magnifyIcon = true
+      this.$emit('on-largen', this.isFullscreen)
+    }
+  },
+  watch: {
+    isShowModal (val) {
+      if (val) {
+        let tabListItem = document.getElementsByClassName('tab-list-item')
+        console.log(tabListItem.length)
+        for (let i = 0; i < tabListItem.length; i++) {
+          tabListItem[i].style.maxHeight = window.innerHeight - 350 + 'px'
+          tabListItem[i].style.minHeight = window.innerHeight - 350 + 'px'
+        }
+      }
+    },
+    isFullscreen (val) {
+      let tabListItem = document.getElementsByClassName('tab-list-item')
+      if (val) {
+        for (let i = 0; i < tabListItem.length; i++) {
+          tabListItem[i].style.maxHeight = window.innerHeight - 200 + 'px'
+        }
+      } else {
+        for (let i = 0; i < tabListItem.length; i++) {
+          tabListItem[i].style.maxHeight = window.innerHeight - 350 + 'px'
+        }
+      }
+    }
+  }
+}
 </script>
 
 <style scoped>

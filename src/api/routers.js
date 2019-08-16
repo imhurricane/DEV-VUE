@@ -1,5 +1,5 @@
 import axios from '@/libs/api.request'
-import config from  '@/config';
+import config from '@/config'
 export const getMenuData = (user) => {
   return axios.request({
     url: '/appservlet/tour',
@@ -8,6 +8,6 @@ export const getMenuData = (user) => {
       requesttype: 'GetMenuServelet',
       systemName: config.systemName
     },
-    method: 'post',
+    method: 'post'
   })
 }

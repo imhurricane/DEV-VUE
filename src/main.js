@@ -13,7 +13,7 @@ import 'iview/dist/styles/iview.css'
 import './index.less'
 import '@/assets/icons/iconfont.css'
 import { initRouter } from '@/libs/router-util' // ①新增  引入动态菜单渲染
-import  msgContent from  '@/libs/reutrnMsgContent'
+import msgContent from '@/libs/reutrnMsgContent'
 import VOrgTree from 'v-org-tree'
 import 'v-org-tree/dist/v-org-tree.css'
 import { directive as clickOutside } from 'v-click-outside-x'

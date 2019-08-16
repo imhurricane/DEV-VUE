@@ -21,20 +21,20 @@
 </template>
 
 <script>
-    import DropdownItemUtil from './DropdownItemUtil'
-    export default {
-      name: "DropdownItemUtil",
-      props: {
-        datas: {
-          default() {
-            return [];
-          }
-        },
-        components: {
-          DropdownItemUtil
-        }
+import DropdownItemUtil from './DropdownItemUtil'
+export default {
+  name: 'DropdownItemUtil',
+  props: {
+    datas: {
+      default () {
+        return []
       }
+    },
+    components: {
+      DropdownItemUtil
     }
+  }
+}
 </script>
 
 <style scoped>

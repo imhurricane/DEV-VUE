@@ -41,7 +41,7 @@ const otherRouter = [{
   name: 'error_500',
   component: () => import('@/view/error-page/500.vue')
 }
-];
+]
 
 // 作为Main组件的子页面展示但是不在左侧菜单显示的路由写在mainRouter里
 const mainRouter = [{
@@ -66,17 +66,17 @@ const mainRouter = [{
       component: () => import('@/view/single-page/home')
     }
   ]
-}];
+}]
 
 // 作为Main组件的子页面展示并且在左侧菜单显示的路由写在appRouter里
 const appRouter = [
   ...dynamicRouterAdd()
-];
+]
 
 const routes = [
   ...otherRouter,
   ...mainRouter,
-  ...appRouter,
+  ...appRouter
 ]
 
 // 所有上面定义的路由都要写在下面输出

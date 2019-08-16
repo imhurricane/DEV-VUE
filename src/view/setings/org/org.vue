@@ -163,188 +163,183 @@
 
 <script>
 
-    import OrgView from './components/org-view.vue'
-    import ZoomController from './components/zoom-controller.vue'
-    import {getList, detail, update, deleteOrg , add} from '@/api/organizationApi'
-    import './index.less'
-    import MyModal from "../../../util/MyModal";
-    export default {
-        name: 'org_tree_page',
-        components: {
-            MyModal,
-            OrgView,
-            ZoomController,
-        },
-        data() {
-            return {
-                data: null,
-                zoom: 100,
-                isShowModal: false,
-                isExpand: true,
-                isMeAdd: null, //是否是自己创建得
-                detailData: {},
-                comeSource: null,
-                isAdd : false,
-                comeKey : null,
-                paternalXtm : null,
-                newDate: getDateString(),
-                currentUser: JSON.parse(localStorage.getItem('userInfo')).userName
-            }
-        },
-        computed: {
-            zoomHandled() {
-                return this.zoom / 100
-            }
-        },
-        methods: {
-            setDepartmentData(data) {
-                data.isRoot = true
-                return data
-            },
-            handleMenuClick({data, key}) {
-                this.comeSource = data.source
-                this.comeKey = data.key
-                this.paternalXtm = data.id
-                if (key === "delete") {
-                    if (this.isMeAdd === '1') {
-                        this.$Modal.confirm({
-                            title: '温馨提示',
-                            content: '<p>确认要删除吗?</p>',
-                            okText: '确认',
-                            cancelText: '取消',
-                            onOk: () => {
-                                deleteOrg(data.id, this.comeSource).then(res => {
-                                    if (res.code === '200') {
-                                        this.getDepartmentData();
-                                    } else if (res.code === '500') {
-                                        this.$Message.error(this.MSGCONTENT.xtErrMsg);
-                                    } else {
-                                        this.$Message.error(res.msg);
-                                    }
-                                })
-                            }
-                        });
-                    } else {
-                        this.$Message.error("您无权删除")
-                    }
-
+import OrgView from './components/org-view.vue'
+import ZoomController from './components/zoom-controller.vue'
+import { getList, detail, update, deleteOrg, add } from '@/api/organizationApi'
+import './index.less'
+import MyModal from '../../../util/MyModal'
+export default {
+  name: 'org_tree_page',
+  components: {
+    MyModal,
+    OrgView,
+    ZoomController
+  },
+  data () {
+    return {
+      data: null,
+      zoom: 100,
+      isShowModal: false,
+      isExpand: true,
+      isMeAdd: null, // 是否是自己创建得
+      detailData: {},
+      comeSource: null,
+      isAdd: false,
+      comeKey: null,
+      paternalXtm: null,
+      newDate: getDateString(),
+      currentUser: JSON.parse(localStorage.getItem('userInfo')).userName
+    }
+  },
+  computed: {
+    zoomHandled () {
+      return this.zoom / 100
+    }
+  },
+  methods: {
+    setDepartmentData (data) {
+      data.isRoot = true
+      return data
+    },
+    handleMenuClick ({ data, key }) {
+      this.comeSource = data.source
+      this.comeKey = data.key
+      this.paternalXtm = data.id
+      if (key === 'delete') {
+        if (this.isMeAdd === '1') {
+          this.$Modal.confirm({
+            title: '温馨提示',
+            content: '<p>确认要删除吗?</p>',
+            okText: '确认',
+            cancelText: '取消',
+            onOk: () => {
+              deleteOrg(data.id, this.comeSource).then(res => {
+                if (res.code === '200') {
+                  this.getDepartmentData()
+                } else if (res.code === '500') {
+                  this.$Message.error(this.MSGCONTENT.xtErrMsg)
                 } else {
-                    if (this.isMeAdd !== '1') {
-                        this.$Message.error("您无权操作")
-                        return;
-                    }
-                    if (key === 'newAddress') {
-                        this.detailData = {}
-                        this.isAdd = true;
-                        this.comeSource = '2'
-                        this.isShowModal = true
-                    }
-                    if (key === 'new' ) {
-                        this.isAdd = true;
-                        this.detailData = {}
-                        if (data.source === '1') {
-                            //添加地点
-                            this.comeSource = '2'
-                            this.isShowModal = true
-                        }
-                        if (data.source === '2') {
-                            //添加部门
-                            this.isShowModal = true
-                            this.comeSource = '3'
-                        }
-                        if (data.source === '3') {
-                            //添加子部门
-                            this.isShowModal = true
-                            this.comeSource = '4'
-                        }
-                    }
-                    if (key === 'edit') {
-                        if(key === 'edit') {
-                            this.isAdd = false
-                        }
-                        detail(data.id, data.source).then(res => {
-                            if (res.code === '200') {
-                                this.detailData = res.data;
-                                this.isShowModal = true
-                            } else if (res.code === '500') {
-                                this.$Message.error(this.MSGCONTENT.xtErrMsg);
-                                this.isShowModal = true
-                            } else {
-                                this.$Message.error(res.msg);
-                                this.isShowModal = true
-                            }
-                        })
-                    }
-
-
+                  this.$Message.error(res.msg)
                 }
-            },
-            getDepartmentData() {
-                getList().then(res => {
-                    const {data, isAdd} = res;
-                    this.data = data;
-                    this.isMeAdd = isAdd;
-                }).catch(err => {
-                    this.loading = false;
-                    this.$Message.error(this.MSGCONTENT.errMsg);
-                })
-            },
-            cancel() {
-                this.isShowModal = false
-            },
-            alertModalOk() {
-                if (this.isAdd) {
-                    //添加
-                    add(this.detailData, this.comeSource , this.paternalXtm).then(res => {
-                        if (res.code === '200') {
-                            this.isShowModal = false
-                            this.getDepartmentData()
-                        } else if (res.code === '500') {
-                            this.isShowModal = false
-                            this.$Message.error(this.MSGCONTENT.xtErrMsg);
-                        } else {
-                            this.isShowModal = false
-                            this.$Message.error(res.msg);
-                        }
-                    })
-                } else {
-                    //进行修改
-                    update(this.detailData, this.comeSource).then(res => {
-                        if (res.code === '200') {
-                            this.$Message.success("修改成功");
-                            this.isShowModal = false
-                            this.getDepartmentData()
-                        } else if (res.code === '500') {
-                            this.isShowModal = false
-                            this.$Message.error(this.MSGCONTENT.xtErrMsg);
-                        } else {
-                            this.isShowModal = false
-                            this.$Message.error(res.msg);
-                        }
-                    })
-                }
-
-            },
-            addOrg () {
-                this.comeSource = '1'
-                this.detailData = {}
-                this.isShowModal = true
-                this.isAdd = true
-            },
-
-        },
-        mounted() {
-            this.getDepartmentData()
-
+              })
+            }
+          })
+        } else {
+          this.$Message.error('您无权删除')
         }
+      } else {
+        if (this.isMeAdd !== '1') {
+          this.$Message.error('您无权操作')
+          return
+        }
+        if (key === 'newAddress') {
+          this.detailData = {}
+          this.isAdd = true
+          this.comeSource = '2'
+          this.isShowModal = true
+        }
+        if (key === 'new') {
+          this.isAdd = true
+          this.detailData = {}
+          if (data.source === '1') {
+            // 添加地点
+            this.comeSource = '2'
+            this.isShowModal = true
+          }
+          if (data.source === '2') {
+            // 添加部门
+            this.isShowModal = true
+            this.comeSource = '3'
+          }
+          if (data.source === '3') {
+            // 添加子部门
+            this.isShowModal = true
+            this.comeSource = '4'
+          }
+        }
+        if (key === 'edit') {
+          if (key === 'edit') {
+            this.isAdd = false
+          }
+          detail(data.id, data.source).then(res => {
+            if (res.code === '200') {
+              this.detailData = res.data
+              this.isShowModal = true
+            } else if (res.code === '500') {
+              this.$Message.error(this.MSGCONTENT.xtErrMsg)
+              this.isShowModal = true
+            } else {
+              this.$Message.error(res.msg)
+              this.isShowModal = true
+            }
+          })
+        }
+      }
+    },
+    getDepartmentData () {
+      getList().then(res => {
+        const { data, isAdd } = res
+        this.data = data
+        this.isMeAdd = isAdd
+      }).catch(err => {
+        this.loading = false
+        this.$Message.error(this.MSGCONTENT.errMsg)
+      })
+    },
+    cancel () {
+      this.isShowModal = false
+    },
+    alertModalOk () {
+      if (this.isAdd) {
+        // 添加
+        add(this.detailData, this.comeSource, this.paternalXtm).then(res => {
+          if (res.code === '200') {
+            this.isShowModal = false
+            this.getDepartmentData()
+          } else if (res.code === '500') {
+            this.isShowModal = false
+            this.$Message.error(this.MSGCONTENT.xtErrMsg)
+          } else {
+            this.isShowModal = false
+            this.$Message.error(res.msg)
+          }
+        })
+      } else {
+        // 进行修改
+        update(this.detailData, this.comeSource).then(res => {
+          if (res.code === '200') {
+            this.$Message.success('修改成功')
+            this.isShowModal = false
+            this.getDepartmentData()
+          } else if (res.code === '500') {
+            this.isShowModal = false
+            this.$Message.error(this.MSGCONTENT.xtErrMsg)
+          } else {
+            this.isShowModal = false
+            this.$Message.error(res.msg)
+          }
+        })
+      }
+    },
+    addOrg () {
+      this.comeSource = '1'
+      this.detailData = {}
+      this.isShowModal = true
+      this.isAdd = true
     }
-    function getDateString() {
-        let date = new Date();
-        let y = date.getFullYear();
-        let m = date.getMonth()+1;
-        let d = date.getDate();
-        return  y + '-' + m + '-' + d
-    }
+
+  },
+  mounted () {
+    this.getDepartmentData()
+  }
+}
+function getDateString () {
+  let date = new Date()
+  let y = date.getFullYear()
+  let m = date.getMonth() + 1
+  let d = date.getDate()
+  return y + '-' + m + '-' + d
+}
 </script>
 
 <style scoped>

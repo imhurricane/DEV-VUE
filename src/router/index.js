@@ -5,17 +5,17 @@ import iView from 'iview'
 import { setToken, getToken, canTurnTo, getAccessar } from '@/libs/util'
 import config from '@/config'
 import { dynamicRouterAdd } from '@/libs/router-util'
-const { homeName } = config
 import routers from '@/router/routers'
+const { homeName } = config
 Vue.use(Router)
 const router = new Router({
   routes: routers,
-  mode: 'history'//history
+  mode: 'history'// history
 })
 const LOGIN_PAGE_NAME = 'login'
 const turnTo = (to, access, next) => {
-    if (canTurnTo(to.name, access,[...routers,...dynamicRouterAdd()])) next() // 有权限，可访问
-    else next({ replace: true, name: 'error_401' }) // 无权限，重定向到401页面
+  if (canTurnTo(to.name, access, [...routers, ...dynamicRouterAdd()])) next() // 有权限，可访问
+  else next({ replace: true, name: 'error_401' }) // 无权限，重定向到401页面
 }
 
 router.beforeEach((to, from, next) => {

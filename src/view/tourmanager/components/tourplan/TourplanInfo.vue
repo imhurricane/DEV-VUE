@@ -211,105 +211,103 @@
 </template>
 
 <script>
-    import {getZyList} from '@/api/utilApi';
-    import '@/util/util.css'
-    import TableUtil from "@/util/TableUtil";
-    import {mapState, mapActions, mapGetters} from 'vuex'
-    import TourplanQy from "./TourplanQy";
-    import TourplanSb from "./TourplanSb";
-    import TourplanXm from "./TourplanXm";
+import { getZyList } from '@/api/utilApi'
+import '@/util/util.css'
+import TableUtil from '@/util/TableUtil'
+import { mapState, mapActions, mapGetters } from 'vuex'
+import TourplanQy from './TourplanQy'
+import TourplanSb from './TourplanSb'
+import TourplanXm from './TourplanXm'
 
-    export default {
-        name: "TourplanInfo",
-        components: {TourplanXm, TourplanSb, TourplanQy, TableUtil},
-        data() {
-            return {
-                minNum: 0,
-                zyArray:[],
-                gwArray:[],
-                xjTypeArray: [],
-                zqDwArray:[],
-                gw: [1, 2, 4]
-            }
-        },
-        methods: {
-            getZyList () {
-                //专业
-                getZyList(1).then(res => {
-                    console.log('--------------------' , res);
-                    this.zyArray = res.data
-                }).catch(err => {
-                    this.$Message.error(this.MSGCONTENT.errMsg);
-                })
-                //巡检分类
-                getZyList(2).then(res => {
-
-                    this.xjTypeArray = res.data
-                }).catch(err => {
-                    this.$Message.error(this.MSGCONTENT.errMsg);
-                })
-                //岗位
-                getZyList(3).then(res => {
-                    this.gwArray = res.data
-                }).catch(err => {
-                    this.$Message.error(this.MSGCONTENT.errMsg);
-                })
-                //周期
-                getZyList(9).then(res => {
-                    this.zqDwArray = res.data
-                }).catch(err => {
-                    this.$Message.error(this.MSGCONTENT.errMsg);
-                })
-            },
-            gotoSb () {
-                this.$refs.myTourplanInfoSb.clickItem();
-            },
-            togoXm () {
-                this.$refs.myTourplanInfoXm.clickItem();
-            },
-            onSelectChange(value) {
-                console.log(value);
-            },
-            clickOk() {
-                if (this.isAddOrUpdate === 3) {
-                    this.$refs.myTourplanInfo.clickOk();
-                } else if (this.isAddOrUpdate === 4) {
-                    this.$refs.myTourplanInfoSb.clickOk();
-                } else if (this.isAddOrUpdate === 5) {
-                    this.$refs.myTourplanInfoXm.clickOk();
-                }
-
-            },
-            clickCancel() {
-                if (this.isAddOrUpdate === 3) {
-                    this.$refs.myTourplanInfo.clickCancel();
-                } else if (this.isAddOrUpdate === 4) {
-                    this.$refs.myTourplanInfoSb.clickCancel();
-                } else if (this.isAddOrUpdate === 5) {
-                    this.$refs.myTourplanInfoXm.clickCancel();
-                }
-            },
-            goto() {
-                if (this.isAddOrUpdate === 3) {
-                    this.$refs.myTourplanInfo.clickItem();
-                }
-                // else if (this.isAddOrUpdate === 4) {
-                //     this.$refs.myTourplanInfoSb.clickItem();
-                // } else if (this.isAddOrUpdate === 5) {
-                //     this.$refs.myTourplanInfoXm.clickItem();
-                // }
-            },
-        },
-        computed: {
-            ...mapState('tourplanStore', [
-                'isAddOrUpdate',
-                'goToData',
-            ])
-        },
-        mounted() {
-            this.getZyList();
-        }
+export default {
+  name: 'TourplanInfo',
+  components: { TourplanXm, TourplanSb, TourplanQy, TableUtil },
+  data () {
+    return {
+      minNum: 0,
+      zyArray: [],
+      gwArray: [],
+      xjTypeArray: [],
+      zqDwArray: [],
+      gw: [1, 2, 4]
     }
+  },
+  methods: {
+    getZyList () {
+      // 专业
+      getZyList(1).then(res => {
+        console.log('--------------------', res)
+        this.zyArray = res.data
+      }).catch(err => {
+        this.$Message.error(this.MSGCONTENT.errMsg)
+      })
+      // 巡检分类
+      getZyList(2).then(res => {
+        this.xjTypeArray = res.data
+      }).catch(err => {
+        this.$Message.error(this.MSGCONTENT.errMsg)
+      })
+      // 岗位
+      getZyList(3).then(res => {
+        this.gwArray = res.data
+      }).catch(err => {
+        this.$Message.error(this.MSGCONTENT.errMsg)
+      })
+      // 周期
+      getZyList(9).then(res => {
+        this.zqDwArray = res.data
+      }).catch(err => {
+        this.$Message.error(this.MSGCONTENT.errMsg)
+      })
+    },
+    gotoSb () {
+      this.$refs.myTourplanInfoSb.clickItem()
+    },
+    togoXm () {
+      this.$refs.myTourplanInfoXm.clickItem()
+    },
+    onSelectChange (value) {
+      console.log(value)
+    },
+    clickOk () {
+      if (this.isAddOrUpdate === 3) {
+        this.$refs.myTourplanInfo.clickOk()
+      } else if (this.isAddOrUpdate === 4) {
+        this.$refs.myTourplanInfoSb.clickOk()
+      } else if (this.isAddOrUpdate === 5) {
+        this.$refs.myTourplanInfoXm.clickOk()
+      }
+    },
+    clickCancel () {
+      if (this.isAddOrUpdate === 3) {
+        this.$refs.myTourplanInfo.clickCancel()
+      } else if (this.isAddOrUpdate === 4) {
+        this.$refs.myTourplanInfoSb.clickCancel()
+      } else if (this.isAddOrUpdate === 5) {
+        this.$refs.myTourplanInfoXm.clickCancel()
+      }
+    },
+    goto () {
+      if (this.isAddOrUpdate === 3) {
+        this.$refs.myTourplanInfo.clickItem()
+      }
+      // else if (this.isAddOrUpdate === 4) {
+      //     this.$refs.myTourplanInfoSb.clickItem();
+      // } else if (this.isAddOrUpdate === 5) {
+      //     this.$refs.myTourplanInfoXm.clickItem();
+      // }
+    }
+  },
+  computed: {
+    ...mapState('tourplanStore', [
+      'isAddOrUpdate',
+      'goToData'
+    ])
+  },
+  mounted () {
+    this.getZyList()
+  }
+}
 </script>
 
 <style scoped>

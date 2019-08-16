@@ -23,8 +23,7 @@ export const initRouter = (vm) => {
       routerData = res // 后台拿到路由
       localSave('dynamicRouter', JSON.stringify(routerData)) // 存储路由到localStorage
       gotRouter = filterAsyncRouter(routerData) // 过滤路由,路由组件转换
-      if(store.commit('updateMenuList', gotRouter))
-      dynamicRouterAdd()
+      if (store.commit('updateMenuList', gotRouter)) { dynamicRouterAdd() }
     }).catch(error => {
       console.log(error)
     })

@@ -9,31 +9,31 @@
 </template>
 
 <script>
-    export default {
-        name: "MyTabHeaderAction",
-        props : {
-            thActionBtns: {
-                type: Array,
-                default (){
-                    return [
-                        {method:'addBut' , iconName: 'ios-create' , content : '新增'},
-                        {method:'delBtn' , iconName: 'md-trash' , content : '删除'}
-                    ]
-                }
-            },
-            name : {
-                type: String,
-                default (){
-                    return '请为我起名'
-                }
-            }
-        },
-        methods: {
-            thCommonBut (method) {
-                this.$emit(method , null);
-            }
-        }
+export default {
+  name: 'MyTabHeaderAction',
+  props: {
+    thActionBtns: {
+      type: Array,
+      default () {
+        return [
+          { method: 'addBut', iconName: 'ios-create', content: '新增' },
+          { method: 'delBtn', iconName: 'md-trash', content: '删除' }
+        ]
+      }
+    },
+    name: {
+      type: String,
+      default () {
+        return '请为我起名'
+      }
     }
+  },
+  methods: {
+    thCommonBut (method) {
+      this.$emit(method, null)
+    }
+  }
+}
 </script>
 
 <style scoped>

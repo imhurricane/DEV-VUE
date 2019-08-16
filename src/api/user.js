@@ -1,5 +1,5 @@
 import axios from '../libs/api.request'
-import md5 from 'md5';
+import md5 from 'md5'
 import config from '@/config'
 const { baseUri } = config
 export const login = ({ userName, password }) => {
@@ -31,7 +31,7 @@ export const getAccess = (yhxtm) => {
       systemName: config.systemName
     },
     method: 'post'
-  });
+  })
   return infoReturn
 }
 
@@ -41,4 +41,3 @@ export const logout = (token) => {
     method: 'post'
   })
 }
-

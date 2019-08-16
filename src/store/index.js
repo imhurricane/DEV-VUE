@@ -5,11 +5,11 @@ import user from './module/user'
 import app from './module/app'
 import userStore from './module/userStore'
 import userStoreTwo from './module/userStoreTwo'
-import PublicTableStore from "./module/PublicTableStore";
-import tourplanStore from "./module/tourplanStore";
-import tourtaskStore from "./module/tourtaskStore";
+import PublicTableStore from './module/PublicTableStore'
+import tourplanStore from './module/tourplanStore'
+import tourtaskStore from './module/tourtaskStore'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 export default new Vuex.Store({
   strict: false,
@@ -26,8 +26,8 @@ export default new Vuex.Store({
     user,
     app,
     userStore,
-    userStoreTwo:userStoreTwo,
-    publicTableStore:PublicTableStore,
+    userStoreTwo: userStoreTwo,
+    publicTableStore: PublicTableStore,
     tourplanStore,
     tourtaskStore
   }

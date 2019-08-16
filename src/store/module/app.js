@@ -16,7 +16,7 @@ import { saveErrorLogger } from '@/api/data'
 import router from '@/router'
 import routers from '@/router/routers'
 import config from '@/config'
-import {dynamicRouterAdd} from "../../libs/router-util";
+import { dynamicRouterAdd } from '../../libs/router-util'
 const { homeName } = config
 
 const closePage = (state, route) => {
@@ -98,9 +98,9 @@ export default {
     },
     updateMenuList (state, routes) { // ①添接受前台数组，刷新菜单
       // router.options.routes = routes
-      router.addRoutes(routes); // 动态添加路由
+      router.addRoutes(routes) // 动态添加路由
       state.menuList = routes
-      console.log('①updateMenuList添menuList', this);
+      console.log('①updateMenuList添menuList', this)
     }
   },
   actions: {

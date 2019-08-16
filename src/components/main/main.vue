@@ -63,7 +63,7 @@ export default {
       minLogo,
       maxLogo,
       isFullscreen: false,
-      userName : JSON.parse(localStorage.getItem('userInfo')).userName
+      userName: JSON.parse(localStorage.getItem('userInfo')).userName
     }
   },
   computed: {

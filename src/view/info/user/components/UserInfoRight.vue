@@ -68,64 +68,64 @@
 </template>
 
 <script>
-    import {getDateString} from '@/libs/util'
-    import DropdownUtil from "@/util/DropdownUtil";
+import { getDateString } from '@/libs/util'
+import DropdownUtil from '@/util/DropdownUtil'
 
-    export default {
-        name: "UserInfoRight",
-        data() {
-            return {
-                zy: null,
-                ktStart: false,
-                glAddress: true,
-                newDate: getDateString(),
-                currentUser: JSON.parse(localStorage.getItem('userInfo')).userName
-            }
-        },
-        components: {
-            DropdownUtil
-        },
-        methods: {
-            updateUser(event, type) {
-                this.$store.commit({
-                    type: 'updateUserInfo',
-                    types: type,
-                    value: event.target.value
-                });
-            },
-            clickBm(name) {
-                console.log(name);
-            },
-            clear() {
-                alert('清除信息');
-            },
-            zyChange(value) {
-                console.log(value);
-            },
-            switchChange(value, type) {
-                if (type === 'kt') {
-                    value = value ? 'Y' : 'N'
-                }
-                if (type === 'glszd') {
-                    value = value ? '1' : '0'
-                }
-                this.$store.commit({
-                    type: 'userStoreTwo/updateUserInfo',
-                    types: type,
-                    value: value
-                });
-            },
-        },
-        computed: {
-            getRowData() {
-                if (this.$store.getters['userStoreTwo/getRowData'] === undefined) {
-                    return {};
-                }
-                return this.$store.getters['userStoreTwo/getRowData'];
-            }
-        }
-
+export default {
+  name: 'UserInfoRight',
+  data () {
+    return {
+      zy: null,
+      ktStart: false,
+      glAddress: true,
+      newDate: getDateString(),
+      currentUser: JSON.parse(localStorage.getItem('userInfo')).userName
     }
+  },
+  components: {
+    DropdownUtil
+  },
+  methods: {
+    updateUser (event, type) {
+      this.$store.commit({
+        type: 'updateUserInfo',
+        types: type,
+        value: event.target.value
+      })
+    },
+    clickBm (name) {
+      console.log(name)
+    },
+    clear () {
+      alert('清除信息')
+    },
+    zyChange (value) {
+      console.log(value)
+    },
+    switchChange (value, type) {
+      if (type === 'kt') {
+        value = value ? 'Y' : 'N'
+      }
+      if (type === 'glszd') {
+        value = value ? '1' : '0'
+      }
+      this.$store.commit({
+        type: 'userStoreTwo/updateUserInfo',
+        types: type,
+        value: value
+      })
+    }
+  },
+  computed: {
+    getRowData () {
+      if (this.$store.getters['userStoreTwo/getRowData'] === undefined) {
+        return {}
+      }
+      return this.$store.getters['userStoreTwo/getRowData']
+    }
+  }
+
+}
 </script>
 
 <style scoped>
@@ -133,7 +133,6 @@
         width: 50%;
         height: 100%;
     }
-
 
     .content-item {
         height: 32px;

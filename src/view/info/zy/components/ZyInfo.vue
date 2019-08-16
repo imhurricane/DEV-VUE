@@ -51,23 +51,23 @@
 </template>
 
 <script>
-    import {getDateString}  from '@/libs/util'
-    import '@/util/util.css'
-    import {mapGetters} from 'vuex'
-    export default {
-        name: "ZyInfo",
-        data () {
-            return {
-                newDate : getDateString(),
-                currentUser: JSON.parse(localStorage.getItem('userInfo')).userName
-            }
-        },
-        computed : {
-            ...mapGetters( 'publicTableStore' , [
-                'getRowData'
-            ])
-        }
+import { getDateString } from '@/libs/util'
+import '@/util/util.css'
+import { mapGetters } from 'vuex'
+export default {
+  name: 'ZyInfo',
+  data () {
+    return {
+      newDate: getDateString(),
+      currentUser: JSON.parse(localStorage.getItem('userInfo')).userName
     }
+  },
+  computed: {
+    ...mapGetters('publicTableStore', [
+      'getRowData'
+    ])
+  }
+}
 </script>
 
 <style scoped>

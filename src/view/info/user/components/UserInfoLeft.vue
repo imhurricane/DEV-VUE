@@ -88,140 +88,138 @@
 </template>
 
 <script>
-    import {getList} from '@/api/zyApi'
-    import {getDeptInfoList} from '@/api/userInfoConfig'
-    import DropdownUtil from "@/util/DropdownUtil";
+import { getList } from '@/api/zyApi'
+import { getDeptInfoList } from '@/api/userInfoConfig'
+import DropdownUtil from '@/util/DropdownUtil'
 
-    export default {
-        name: "UserInfoLeft",
-        data() {
-            return {
-                deptData: [],
-                zy: null,
-                ktStart: false,
-                glAddress: true,
-                // bm: this.$store.getters['userStoreTwo/getRowData'].bm || '请选择部门',
-                // bj: this.$store.getters['userStoreTwo/getRowData'].bj || '请选择班组'
-                zyArray: [],
-            }
-        },
-        components: {
-            DropdownUtil
-        },
-        methods: {
-            getDeptList(xtm) {
-                // this.$forceUpdate();
-                console.log('地点', xtm);
-                console.log('刷新部门信息');
-                if (xtm == undefined) {
-                    this.deptData = [];
-                } else {
-                    getDeptInfoList(xtm).then(res => {
-                        console.log('部门信息', res.data);
-                        this.deptData = res.data
-                    })
-                }
-
-            },
-            format(labels, selectedData) {
-                console.log('发射点发');
-                console.log("labels", labels);
-                console.log("selectedData", selectedData);
-                const index = labels.length - 1;
-                return labels[index];
-            },
-            updateUser(event, type) {
-                this.$store.commit({
-                    type: 'userStore/updateUserInfo',
-                    types: type,
-                    value: event.target.value
-                });
-            },
-            clickBm(name) {
-                alert(name);
-                console.log(name);
-            },
-            clear() {
-                alert('清除信息');
-            },
-            siteChange(value) {
-                if (value !== undefined) {
-                    this.getDeptList(value)
-                }
-            },
-            zyChange(value) {
-                this.$store.commit({
-                    type: 'userStore/updateUserInfo',
-                    types: 'zy',
-                    value: value
-                });
-            },
-            // switchChange(value, type) {
-            //     if (type === 'kt') {
-            //         value = value ? 'Y' : 'N'
-            //     }
-            //     if (type === 'glszd') {
-            //         value = value ? '1' : '0'
-            //     }
-            //     this.$store.commit({
-            //         type: 'userStoreTwo/updateUserInfo',
-            //         types: type,
-            //         value: value
-            //     });
-            // },
-            selectClear(type) {
-                if ('jg') {
-                    this.$store.commit({
-                        type: 'userStoreTwo/updateUserInfo',
-                        types: 'site',
-                        value: null
-                    });
-                    this.$store.commit({
-                        type: 'userStoreTwo/updateUserInfo',
-                        types: 'dept',
-                        value: []
-                    });
-                }
-                if ('site') {
-                    this.$store.commit({
-                        type: 'userStoreTwo/updateUserInfo',
-                        types: 'dept',
-                        value: []
-                    });
-                }
-            },
-            getZyList() {
-                if (this.zyArray.length === 0) {
-                    getList(1, 100).then(res => {
-                        console.log('专业', res.data);
-                        this.zyArray = res.data
-                    })
-                }
-            }
-        },
-        computed: {
-            getRowData() {
-                if (this.$store.getters['userStoreTwo/getRowData'] === undefined) {
-                    return {};
-                }
-                // if (this.$store.getters['userStoreTwo/getRowData'].site !== undefined) {
-                //     this.getDeptList(this.$store.state.userStoreTwo.rowData.site)
-                // }
-                return this.$store.getters['userStoreTwo/getRowData'];
-            },
-            getOrgDataArray() {
-                return this.$store.getters['userStoreTwo/getOrgDataArray']
-            },
-            getSiteDataArray() {
-                return this.$store.getters['userStoreTwo/getSiteDataArray']
-            },
-        },
-        mounted() {
-            this.getZyList();
-
-        }
-
+export default {
+  name: 'UserInfoLeft',
+  data () {
+    return {
+      deptData: [],
+      zy: null,
+      ktStart: false,
+      glAddress: true,
+      // bm: this.$store.getters['userStoreTwo/getRowData'].bm || '请选择部门',
+      // bj: this.$store.getters['userStoreTwo/getRowData'].bj || '请选择班组'
+      zyArray: []
     }
+  },
+  components: {
+    DropdownUtil
+  },
+  methods: {
+    getDeptList (xtm) {
+      // this.$forceUpdate();
+      console.log('地点', xtm)
+      console.log('刷新部门信息')
+      if (xtm == undefined) {
+        this.deptData = []
+      } else {
+        getDeptInfoList(xtm).then(res => {
+          console.log('部门信息', res.data)
+          this.deptData = res.data
+        })
+      }
+    },
+    format (labels, selectedData) {
+      console.log('发射点发')
+      console.log('labels', labels)
+      console.log('selectedData', selectedData)
+      const index = labels.length - 1
+      return labels[index]
+    },
+    updateUser (event, type) {
+      this.$store.commit({
+        type: 'userStore/updateUserInfo',
+        types: type,
+        value: event.target.value
+      })
+    },
+    clickBm (name) {
+      alert(name)
+      console.log(name)
+    },
+    clear () {
+      alert('清除信息')
+    },
+    siteChange (value) {
+      if (value !== undefined) {
+        this.getDeptList(value)
+      }
+    },
+    zyChange (value) {
+      this.$store.commit({
+        type: 'userStore/updateUserInfo',
+        types: 'zy',
+        value: value
+      })
+    },
+    // switchChange(value, type) {
+    //     if (type === 'kt') {
+    //         value = value ? 'Y' : 'N'
+    //     }
+    //     if (type === 'glszd') {
+    //         value = value ? '1' : '0'
+    //     }
+    //     this.$store.commit({
+    //         type: 'userStoreTwo/updateUserInfo',
+    //         types: type,
+    //         value: value
+    //     });
+    // },
+    selectClear (type) {
+      if ('jg') {
+        this.$store.commit({
+          type: 'userStoreTwo/updateUserInfo',
+          types: 'site',
+          value: null
+        })
+        this.$store.commit({
+          type: 'userStoreTwo/updateUserInfo',
+          types: 'dept',
+          value: []
+        })
+      }
+      if ('site') {
+        this.$store.commit({
+          type: 'userStoreTwo/updateUserInfo',
+          types: 'dept',
+          value: []
+        })
+      }
+    },
+    getZyList () {
+      if (this.zyArray.length === 0) {
+        getList(1, 100).then(res => {
+          console.log('专业', res.data)
+          this.zyArray = res.data
+        })
+      }
+    }
+  },
+  computed: {
+    getRowData () {
+      if (this.$store.getters['userStoreTwo/getRowData'] === undefined) {
+        return {}
+      }
+      // if (this.$store.getters['userStoreTwo/getRowData'].site !== undefined) {
+      //     this.getDeptList(this.$store.state.userStoreTwo.rowData.site)
+      // }
+      return this.$store.getters['userStoreTwo/getRowData']
+    },
+    getOrgDataArray () {
+      return this.$store.getters['userStoreTwo/getOrgDataArray']
+    },
+    getSiteDataArray () {
+      return this.$store.getters['userStoreTwo/getSiteDataArray']
+    }
+  },
+  mounted () {
+    this.getZyList()
+  }
+
+}
 </script>
 
 <style scoped>

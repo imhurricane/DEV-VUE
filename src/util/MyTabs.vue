@@ -14,25 +14,25 @@
 </template>
 
 <script>
-    export default {
-        name: "MyTabs",
-        props: {
-            tabsName: {
-                type: String
-            },
-            tabsArray: {
-                type: Array,
-                default() {
-                    return []
-                }
-            }
-        },
-        methods: {
-            clickTab(name) {
-                this.$emit('on-click-tab', name)
-            }
-        }
+export default {
+  name: 'MyTabs',
+  props: {
+    tabsName: {
+      type: String
+    },
+    tabsArray: {
+      type: Array,
+      default () {
+        return []
+      }
     }
+  },
+  methods: {
+    clickTab (name) {
+      this.$emit('on-click-tab', name)
+    }
+  }
+}
 </script>
 <style>
     .tab-list-item{

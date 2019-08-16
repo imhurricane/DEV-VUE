@@ -35,5 +35,4 @@ export default {
   },
   systemName: 'a8926eae95bd49b5af1b3283858ce52a'
 
-
 }

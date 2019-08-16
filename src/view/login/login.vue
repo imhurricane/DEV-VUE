@@ -25,7 +25,7 @@ export default {
   methods: {
     ...mapActions([
       'handleLogin',
-      'getAccess',
+      'getAccess'
     ]),
     handleSubmit ({ userName, password }) {
       this.handleLogin({ userName, password }).then(res => {
@@ -35,7 +35,7 @@ export default {
             name: this.$config.homeName
           })
         })
-      }).catch(res =>{
+      }).catch(res => {
         console.log(res)
       })
     }

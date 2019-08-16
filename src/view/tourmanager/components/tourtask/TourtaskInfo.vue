@@ -182,88 +182,87 @@
 </template>
 
 <script>
-    import {getZyList} from '@/api/utilApi';
-    import '@/util/util.css'
-    import TableUtil from "@/util/TableUtil";
-    import {mapState, mapActions, mapGetters} from 'vuex'
-    import TourtaskQy from "./TourtaskQy";
-    import TourtaskSb from "./TourtaskSb";
-    import TourtaskXm from "./TourtaskXm";
-    import TourtaskJg from "./TourtaskJg";
+import { getZyList } from '@/api/utilApi'
+import '@/util/util.css'
+import TableUtil from '@/util/TableUtil'
+import { mapState, mapActions, mapGetters } from 'vuex'
+import TourtaskQy from './TourtaskQy'
+import TourtaskSb from './TourtaskSb'
+import TourtaskXm from './TourtaskXm'
+import TourtaskJg from './TourtaskJg'
 
-    export default {
-        name: "TourtaskInfo",
-        components: {TourtaskJg, TourtaskXm, TourtaskSb, TourtaskQy, TableUtil},
-        data() {
-            return {
-                zyArray: [],
-                gw: [1, 2, 4]
-            }
-        },
-        methods: {
-            getZyList() {
-                getZyList(1).then(res => {
-                    this.zyArray = res.data
-                }).catch(err => {
-                    this.$Message.error(this.MSGCONTENT.errMsg);
-                })
-            },
-            gotoSb() {
-                this.$refs.myTourtaskInfoSb.clickItem();
-            },
-            togoXm() {
-                this.$refs.myTourtaskInfoXm.clickItem();
-            },
-            togoJg() {
-                this.$refs.myTourtaskInfoJg.clickItem();
-            },
-            onSelectChange(value) {
-                console.log(value);
-            },
-            clickOk() {
-                if (this.isAddOrUpdate === 3) {
-                    this.$refs.myTourtaskInfo.clickOk();
-                } else if (this.isAddOrUpdate === 4) {
-                    this.$refs.myTourtaskInfoSb.clickOk();
-                } else if (this.isAddOrUpdate === 5) {
-                    this.$refs.myTourtaskInfoXm.clickOk();
-                } else if (this.isAddOrUpdate === 6) {
-                    this.$refs.myTourtaskInfoJg.clickOk();
-                }
-
-            },
-            clickCancel() {
-                if (this.isAddOrUpdate === 3) {
-                    this.$refs.myTourtaskInfo.clickCancel();
-                } else if (this.isAddOrUpdate === 4) {
-                    this.$refs.myTourtaskInfoSb.clickCancel();
-                } else if (this.isAddOrUpdate === 5) {
-                    this.$refs.myTourtaskInfoXm.clickCancel();
-                } else if (this.isAddOrUpdate === 6) {
-                    this.$refs.myTourtaskInfoJg.clickCancel();
-                }
-            },
-            goto() {
-                if (this.isAddOrUpdate === 3) {
-                    this.$refs.myTourtaskInfo.clickItem();
-                }
-                // else if (this.isAddOrUpdate === 4) {
-                //     this.$refs.myTourplanInfoSb.clickItem();
-                // } else if (this.isAddOrUpdate === 5) {
-                //     this.$refs.myTourplanInfoXm.clickItem();
-                // }
-            },
-        },
-        computed: {
-            ...mapState('tourtaskStore', [
-                'isAddOrUpdate',
-                'goToData'
-            ])
-        },
-        mounted() {
-            this.getZyList();
-        }
+export default {
+  name: 'TourtaskInfo',
+  components: { TourtaskJg, TourtaskXm, TourtaskSb, TourtaskQy, TableUtil },
+  data () {
+    return {
+      zyArray: [],
+      gw: [1, 2, 4]
     }
+  },
+  methods: {
+    getZyList () {
+      getZyList(1).then(res => {
+        this.zyArray = res.data
+      }).catch(err => {
+        this.$Message.error(this.MSGCONTENT.errMsg)
+      })
+    },
+    gotoSb () {
+      this.$refs.myTourtaskInfoSb.clickItem()
+    },
+    togoXm () {
+      this.$refs.myTourtaskInfoXm.clickItem()
+    },
+    togoJg () {
+      this.$refs.myTourtaskInfoJg.clickItem()
+    },
+    onSelectChange (value) {
+      console.log(value)
+    },
+    clickOk () {
+      if (this.isAddOrUpdate === 3) {
+        this.$refs.myTourtaskInfo.clickOk()
+      } else if (this.isAddOrUpdate === 4) {
+        this.$refs.myTourtaskInfoSb.clickOk()
+      } else if (this.isAddOrUpdate === 5) {
+        this.$refs.myTourtaskInfoXm.clickOk()
+      } else if (this.isAddOrUpdate === 6) {
+        this.$refs.myTourtaskInfoJg.clickOk()
+      }
+    },
+    clickCancel () {
+      if (this.isAddOrUpdate === 3) {
+        this.$refs.myTourtaskInfo.clickCancel()
+      } else if (this.isAddOrUpdate === 4) {
+        this.$refs.myTourtaskInfoSb.clickCancel()
+      } else if (this.isAddOrUpdate === 5) {
+        this.$refs.myTourtaskInfoXm.clickCancel()
+      } else if (this.isAddOrUpdate === 6) {
+        this.$refs.myTourtaskInfoJg.clickCancel()
+      }
+    },
+    goto () {
+      if (this.isAddOrUpdate === 3) {
+        this.$refs.myTourtaskInfo.clickItem()
+      }
+      // else if (this.isAddOrUpdate === 4) {
+      //     this.$refs.myTourplanInfoSb.clickItem();
+      // } else if (this.isAddOrUpdate === 5) {
+      //     this.$refs.myTourplanInfoXm.clickItem();
+      // }
+    }
+  },
+  computed: {
+    ...mapState('tourtaskStore', [
+      'isAddOrUpdate',
+      'goToData'
+    ])
+  },
+  mounted () {
+    this.getZyList()
+  }
+}
 </script>
 
 <style scoped>

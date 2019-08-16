@@ -2,17 +2,17 @@ import Cookies from 'js-cookie'
 // cookie保存的天数
 import config from '@/config'
 import { forEach, hasOneOf, objEqual } from '@/libs/tools'
-import store from "@vue/cli-service/generator/vuex/template/src/store";
+import store from '@vue/cli-service/generator/vuex/template/src/store'
 
 export const TOKEN_KEY = 'token'
 export const YHXTM_KEY = 'yhxtm'
 
 export const setToken = (token) => {
-  Cookies.set(TOKEN_KEY, token, {expires: config.cookieExpires || 1})
+  Cookies.set(TOKEN_KEY, token, { expires: config.cookieExpires || 1 })
 }
 
 export const setYhxtm = (yhxtm) => {
-  Cookies.set(YHXTM_KEY, yhxtm, {expires: config.cookieExpires || 1})
+  Cookies.set(YHXTM_KEY, yhxtm, { expires: config.cookieExpires || 1 })
 }
 
 export const getYhxtm = () => {
@@ -71,7 +71,7 @@ export const getBreadCrumbList = (route, homeRoute) => {
   let res = routeMetched.filter(item => {
     return item.meta === undefined || !item.meta.hide
   }).map(item => {
-    let meta = {...item.meta}
+    let meta = { ...item.meta }
     if (meta.title && typeof meta.title === 'function') meta.title = meta.title(route)
     let obj = {
       icon: (item.meta && item.meta.icon) || '',
@@ -83,12 +83,12 @@ export const getBreadCrumbList = (route, homeRoute) => {
   res = res.filter(item => {
     return !item.meta.hideInMenu
   })
-  return [{...homeItem, to: homeRoute.path}, ...res]
+  return [{ ...homeItem, to: homeRoute.path }, ...res]
 }
 
 export const getRouteTitleHandled = (route) => {
-  let router = {...route}
-  let meta = {...route.meta}
+  let router = { ...route }
+  let meta = { ...route.meta }
   let title = ''
   if (meta.title) {
     if (typeof meta.title === 'function') title = meta.title(router)
@@ -354,9 +354,9 @@ export const localRead = (key) => {
   return localStorage.getItem(key) || ''
 }
 export const getDateString = () => {
-  let date = new Date();
-  let y = date.getFullYear();
-  let m = date.getMonth()+1;
-  let d = date.getDate();
-  return  y + '-' + m + '-' + d
+  let date = new Date()
+  let y = date.getFullYear()
+  let m = date.getMonth() + 1
+  let d = date.getDate()
+  return y + '-' + m + '-' + d
 }

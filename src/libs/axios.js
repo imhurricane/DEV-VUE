@@ -1,19 +1,19 @@
 import axios from 'axios'
 import qs from 'qs'
 import store from '@/store'
-import {getToken, getYhxtm} from "./util";
+import { getToken, getYhxtm } from './util'
 // import { Spin } from 'iview'
 axios.defaults.headers = {
-  "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+  'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
 }
 axios.defaults.transformRequest = [function (data) {
-  var newData = "";
+  var newData = ''
   for (let k in data) {
-    if(data[k]){
+    if (data[k]) {
       newData += encodeURIComponent(k) + '=' + encodeURIComponent(data[k]) + '&'
     }
   }
-  return newData.substring( 0 , newData.lastIndexOf('&'));
+  return newData.substring(0, newData.lastIndexOf('&'))
 }]
 const addErrorLog = errorInfo => {
   const { statusText, status, request: { responseURL } } = errorInfo
@@ -37,7 +37,7 @@ class HttpRequest {
       headers: {
 
         //
-      },
+      }
     }
     return config
   }
@@ -63,8 +63,8 @@ class HttpRequest {
     })
     // 响应拦截
     instance.interceptors.response.use(res => {
-      this.destroy(url);
-      return  res.data
+      this.destroy(url)
+      return res.data
     }, error => {
       this.destroy(url)
       // addErrorLog(error.response)
@@ -74,9 +74,9 @@ class HttpRequest {
   request (options) {
     const instance = axios.create()
     options = Object.assign(this.getInsideConfig(), options)
-    if(options.method === 'get'){
+    if (options.method === 'get') {
       options['params'] = options['data']
-      options['data'] = null;
+      options['data'] = null
     }
     this.interceptors(instance, options.url)
     return instance(options)
