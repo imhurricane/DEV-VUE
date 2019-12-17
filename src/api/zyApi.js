@@ -1,7 +1,7 @@
 import axios from '@/libs/api.request'
 export const getList = (page, pageSize, searchContent, searchCol) => {
   return axios.request({
-    url: '/appservlet/tour/zy',
+    url: 'userInfo/zy',
     data: {
       requestdir: 'tour.zy',
       requesttype: 'ZyServlet',
@@ -16,7 +16,7 @@ export const getList = (page, pageSize, searchContent, searchCol) => {
 }
 export const addOrUpdateData = (data) => {
   return axios.request({
-    url: '/appservlet/tour/zy',
+    url: '/appservlet/tour/zy1',
     data: {
       requestdir: 'tour.zy',
       requesttype: 'ZyServlet',
@@ -28,7 +28,7 @@ export const addOrUpdateData = (data) => {
 }
 export const deleteData = (xtmArray) => {
   return axios.request({
-    url: '/appservlet/tour/zy',
+    url: '/appservlet/tour/zy2',
     data: {
       requestdir: 'tour.zy',
       requesttype: 'ZyServlet',

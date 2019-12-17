@@ -17,7 +17,7 @@ const BASE_URL = process.env.NODE_ENV === 'production'
   : '/'
 const REQUEST_URL = process.env.NODE_ENV === 'production'
   ? 'http://127.0.0.1:5551'
-  : 'http://127.0.0.1:7001'
+  : 'http://127.0.0.1:8090'
 // : 'http://www.chasingeda.com:5551'
 module.exports = {
   // Project deployment base

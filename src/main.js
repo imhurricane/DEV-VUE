@@ -46,7 +46,6 @@ Vue.prototype.MSGCONTENT = msgContent
  */
 importDirective(Vue)
 Vue.directive('clickOutside', clickOutside)
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -54,7 +53,7 @@ new Vue({
   i18n,
   store,
   render: h => h(App),
-  mounted() {
-    initRouter(this);  // ①新增 调用方法,动态生成路由
+  mounted () {
+    initRouter(this)  // ①新增 调用方法,动态生成路由
   }
 })

@@ -192,7 +192,7 @@ export default {
       userPageSize: 5,
       userTotal: 0,
       userSearchContent: '',
-      loading: false
+      tableLoading: false
 
     }
   },

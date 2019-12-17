@@ -109,7 +109,7 @@ export default {
     disabledHover: {
       type: Boolean
     },
-    loading: {
+    tableLoading: {
       type: Boolean,
       default: false
     },

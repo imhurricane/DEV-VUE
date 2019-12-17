@@ -68,7 +68,7 @@ export default {
       pageSize: 10,
       total: 0,
       modalWidth: window.innerWidth - 360,
-      loading: false,
+      tableLoading: false,
       saveOrDelBtnData: true,
       isTabsShow: false,
       modalLoading: false,

@@ -1,4 +1,4 @@
-import { login, logout, getAccess } from '@/api/user'
+import { login, getAccess } from '@/api/user'
 import { setToken, getToken, setYhxtm, getYhxtm, localSave } from '@/libs/util'
 import { initRouter } from '@/libs/router-util'
 export default {
@@ -46,11 +46,11 @@ export default {
           password
         }).then(res => {
           const data = res
-          if (data.code === '200' && data.token) {
-            commit('setToken', data.token)
-            commit('setYhxtm', data.yhxtm)
-            console.log(data.user)
-            localSave('userInfo', JSON.stringify(data.user))
+          if (data.code === 200 && data.data.userId) {
+            commit('setToken', data.data.userId)
+            commit('setYhxtm', data.data.userId)
+            // console.log(data.data)
+            localSave('userInfo', JSON.stringify(data.data))
             console.log(JSON.parse(localStorage.getItem('userInfo')).userName)
             initRouter()
             resolve()
@@ -91,7 +91,7 @@ export default {
         try {
           getAccess(state.yhxtm).then(res => {
             const data = res
-            commit('setToken', data.token)
+            // commit('setToken', data.token)
             commit('setAvator', data.avator)
             commit('setUserName', data.name)
             commit('setUserId', data.user_id)

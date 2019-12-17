@@ -62,7 +62,7 @@ export default {
           authName: '管理员'
         }
       ],
-      loading: false
+      tableLoading: false
     }
   },
   methods: {

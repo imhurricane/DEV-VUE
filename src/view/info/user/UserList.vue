@@ -39,7 +39,7 @@ export default {
   data () {
     return {
       tableHeight: 0,
-      loading: false,
+      tableLoading: false,
       columns: [
         {
           // 多选
@@ -88,7 +88,7 @@ export default {
       }
       getUserList(this.current, this.pageSize, this.searchContent).then(res => {
         console.log(res)
-        if (res.code === '200') {
+        if (res.code === 200) {
           this.total = res.totalCount
           this.$store.commit('addUserInfArray', res.data)
         } else if (res.code === '500') {

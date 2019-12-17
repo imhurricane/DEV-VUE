@@ -1,20 +1,17 @@
 import axios from '../libs/api.request'
 import md5 from 'md5'
 import config from '@/config'
-const { baseUri } = config
+
 export const login = ({ userName, password }) => {
   const data = {
     userName,
     password
   }
   return axios.request({
-    url: baseUri + '/login',
+    url: 'userInfo/login',
     data: {
-      requestdir: 'tour',
-      requesttype: 'LoginServlet',
       userName: userName,
       password: md5(password),
-      // password: password
       systemName: config.systemName
     },
     method: 'post'
@@ -23,11 +20,8 @@ export const login = ({ userName, password }) => {
 
 export const getAccess = (yhxtm) => {
   var infoReturn = axios.request({
-    url: baseUri,
+    url: 'userInfo/getAccess',
     params: {
-      requestdir: 'tour',
-      requesttype: 'AuthServlet',
-      yhxtm,
       systemName: config.systemName
     },
     method: 'post'

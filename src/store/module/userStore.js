@@ -8,7 +8,8 @@ export default {
     tabValue: 'userList',
     userInfoArray: [],
     isSaveOrDelBtn: true, // true 为删除  反正保存,
-    selectRowData: []
+    selectRowData: [],
+    selectedUserInfo: ''
 
   },
   // 获取数据

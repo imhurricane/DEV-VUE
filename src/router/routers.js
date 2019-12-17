@@ -64,6 +64,35 @@ const mainRouter = [{
         icon: 'md-home'
       },
       component: () => import('@/view/single-page/home')
+    },
+    {
+      path: '/DevTableDetail',
+      name: 'DevTableDetail',
+      meta: {
+        title: '详情页面',
+        hideInMenu: true
+      },
+      component: () => import('@/my-components/DevTableDetail')
+    },
+    {
+      path: '/userDetail',
+      name: 'userDetail',
+      meta: {
+        title: '详情页面',
+        hideInMenu: true,
+        notCache: true
+      },
+      component: () => import('@/view/setings/user-info/components/userDetail')
+    },
+    {
+      path: '/menuDetail',
+      name: 'menuDetail',
+      meta: {
+        title: '菜单详情',
+        hideInMenu: true,
+        notCache: true
+      },
+      component: () => import('@/view/setings/menu-info/components/menuDetail')
     }
   ]
 }]
@@ -78,6 +107,5 @@ const routes = [
   ...mainRouter,
   ...appRouter
 ]
-
 // 所有上面定义的路由都要写在下面输出
 export default routes

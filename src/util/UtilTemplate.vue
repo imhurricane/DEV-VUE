@@ -62,7 +62,7 @@ export default {
       pageSize: 10,
       total: 0,
       modalWidth: window.innerWidth - 360,
-      loading: false,
+      tableLoading: false,
       tabsName: 'list',
       isTabsShow: false,
       modalLoading: false,
